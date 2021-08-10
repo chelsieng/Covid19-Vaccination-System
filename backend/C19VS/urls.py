@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import function
+from .views import *
 
 urlpatterns = [
     path('function/', function)
