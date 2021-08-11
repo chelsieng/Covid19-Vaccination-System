@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('function/', function),
-    path('<str:query>/', get_query)
+    path('<str:query>/', get_query),
+    path('delete/<str:query>/', delete_record),
+    path('edit/<str:query>/', edit_record)
 ]
