@@ -1,5 +1,7 @@
 import sshtunnel
 import pymysql
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 #    SSH Hostname : login.encs.concordia.ca
@@ -33,6 +35,30 @@ def getCursor():
         connect_timeout=3100)
 
     return db.cursor()
+
+
+def getQuery(query):
+    cursor = getCursor()
+
+    sql = query
+    results = []
+    data = {"attributes": [], "results": []}
+    try:
+        # Execute the SQL command
+        cursor.execute(sql)
+
+        # Fetch all the rows in a list of lists.
+        data["results"] = cursor.fetchall()
+        for item in results:
+            print(item)
+        # print(results)
+    except:
+        print("Error: unable to fetch data")
+    # Table headers
+    data["attributes"] = [i[0] for i in cursor.description]
+    # data["attributes"].append(field_names)
+    # data["results"].append(results)
+    return json.dumps(data, cls=DjangoJSONEncoder)
 
 
 def get_Persons():
