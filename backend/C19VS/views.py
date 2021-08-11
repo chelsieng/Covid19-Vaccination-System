@@ -3,12 +3,16 @@ from django.http import HttpResponse
 from .dbfunctions import *
 
 
-def function(request):
-    msg = "Hello World from Django!"
-    results = get_Persons()
-    return HttpResponse(results)
-
-
 def get_query(request, query):
     request = getQuery(query)
+    return HttpResponse(request)
+
+
+def delete_record(request, query):
+    request = delete(query)
+    return HttpResponse(request)
+
+
+def edit_record(request, query):
+    request = edit(query)
     return HttpResponse(request)

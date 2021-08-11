@@ -1,16 +1,10 @@
 <template>
   <Header/>
-<!--<div id="nav">-->
-<!--  <router-link to="/">Home</router-link> |-->
-<!--  <router-link to="/about">About</router-link>-->
-<!--</div>-->
 <router-view/>
 </template>
 
 <script>
-// import Person from './components/Person.vue'
 import Header from './components/Header.vue'
-// import Query from './components/Query.vue'
 
 export default {
   name: 'App',

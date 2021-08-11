@@ -11,7 +11,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 #    Username: ujc353_1
 #    Default Schema: ujc353_1
 
-def getCursor():
+def getDBCursor():
     sshtunnel.SSH_TIMEOUT = 30000
 
     server = sshtunnel.SSHTunnelForwarder(
@@ -34,14 +34,12 @@ def getCursor():
         database="ujc353_1",
         connect_timeout=3100)
 
-    return db.cursor()
+    return db, db.cursor()
 
 
 def getQuery(query):
-    cursor = getCursor()
-
+    db, cursor = getDBCursor()
     sql = query
-    results = []
     data = {"attributes": [], "results": []}
     try:
         # Execute the SQL command
@@ -49,34 +47,38 @@ def getQuery(query):
 
         # Fetch all the rows in a list of lists.
         data["results"] = cursor.fetchall()
-        for item in results:
-            print(item)
-        # print(results)
     except:
         print("Error: unable to fetch data")
     # Table headers
     data["attributes"] = [i[0] for i in cursor.description]
-    # data["attributes"].append(field_names)
-    # data["results"].append(results)
+    db.close()
     return json.dumps(data, cls=DjangoJSONEncoder)
 
 
-def get_Persons():
-    cursor = getCursor()
-
-    sql = "select * from Persons;"
-    results = []
+def delete(query):
+    db, cursor = getDBCursor()
+    sql = query
+    print(sql)
     try:
         # Execute the SQL command
         cursor.execute(sql)
+        db.commit()
+        return True
 
-        # Fetch all the rows in a list of lists.
-        results = cursor.fetchall()
-        for item in results:
-            print(item)
-        # print(results)
     except:
-        print("Error: unable to fetch data")
-    # Table headers
-    field_names = [i[0] for i in cursor.description]
-    return field_names, results
+        print("Error: unable to delete")
+        return False
+
+
+def edit(query):
+    db, cursor = getDBCursor()
+    sql = query
+    try:
+        # Execute the SQL command
+        cursor.execute(sql)
+        db.commit()
+        return True
+
+    except:
+        print("Error: unable to edit")
+        return False
