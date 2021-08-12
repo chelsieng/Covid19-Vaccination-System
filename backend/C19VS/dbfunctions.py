@@ -2,8 +2,13 @@ import sshtunnel
 import pymysql
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
+encsUser = os.getenv('ENCS_USERNAME')
+encsPass = os.getenv('ENCS_PASSWORD')
 #    SSH Hostname : login.encs.concordia.ca
 #    SSH Username : your personal GCS/ENCS username
 #    MYSQL Hostname : ujc353.encs.concordia.ca
@@ -16,8 +21,8 @@ def getDBCursor():
 
     server = sshtunnel.SSHTunnelForwarder(
         'login.encs.concordia.ca',
-        ssh_username="<your_personal_encs_username>",
-        ssh_password="<your_personal_encs_password>",
+        ssh_username=encsUser,
+        ssh_password=encsPass,
         remote_bind_address=('ujc353.encs.concordia.ca', 3306)
     )
 
