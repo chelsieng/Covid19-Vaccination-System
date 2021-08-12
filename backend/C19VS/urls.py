@@ -5,5 +5,5 @@ urlpatterns = [
     path('<str:query>/', get_query),
     path('delete/<str:query>/', delete_record),
     path('edit/<str:query>/', edit_record),
-    path('create/<str:query>/',create_record)
+    path('create/<str:query>/', create_record)
 ]
