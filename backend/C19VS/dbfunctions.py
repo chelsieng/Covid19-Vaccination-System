@@ -87,3 +87,14 @@ def edit(query):
     except:
         print("Error: unable to edit")
         return False
+
+def create(query):
+    db, cursor = getDBCursor()
+    sql = query
+    try:
+        cursor.execute(sql)
+        db.commit()
+        return True
+    except:
+        print('Error: unable to create')
+        return False
