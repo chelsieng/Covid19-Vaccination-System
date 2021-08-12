@@ -3,12 +3,15 @@ import pymysql
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# from dotenv import load_dotenv
+
+# load_dotenv()
 
 encsUser = os.getenv('ENCS_USERNAME')
 encsPass = os.getenv('ENCS_PASSWORD')
+
+
 #    SSH Hostname : login.encs.concordia.ca
 #    SSH Username : your personal GCS/ENCS username
 #    MYSQL Hostname : ujc353.encs.concordia.ca
@@ -49,6 +52,7 @@ def getQuery(query):
     try:
         # Execute the SQL command
         cursor.execute(sql)
+        db.commit()
 
         # Fetch all the rows in a list of lists.
         data["results"] = cursor.fetchall()
@@ -87,6 +91,7 @@ def edit(query):
     except:
         print("Error: unable to edit")
         return False
+
 
 def create(query):
     db, cursor = getDBCursor()
