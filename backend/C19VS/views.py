@@ -16,3 +16,8 @@ def delete_record(request, query):
 def edit_record(request, query):
     request = edit(query)
     return HttpResponse(request)
+
+
+def create_record(request, query):
+    request = create(query)
+    return HttpResponse(request)
