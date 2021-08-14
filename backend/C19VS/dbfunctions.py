@@ -10,6 +10,7 @@ load_dotenv()
 
 encsUser = os.getenv('ENCS_USERNAME')
 encsPass = os.getenv('ENCS_PASSWORD')
+dbPass = os.getenv('DB_PASSWORD')
 
 
 #    SSH Hostname : login.encs.concordia.ca
@@ -38,7 +39,7 @@ def getDBCursor():
         host="localhost",
         port=server.local_bind_port,
         user="ujc353_1",
-        password="1qaz2wsx",
+        password=dbPass,
         database="ujc353_1",
         connect_timeout=3100)
 
