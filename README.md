@@ -3,7 +3,7 @@ A UI simulation of a database application system for the COVID-19 Public Health 
 
 ## 🎬 Demo
 #### 1. Execute SQL queries
-![image](https://user-images.githubusercontent.com/60008262/129432526-638f71c9-1b14-4381-92fb-3e1e5e04a85d.png)
+![image](https://user-images.githubusercontent.com/60008262/129432782-a757b0ba-3f4a-4ab2-b52e-8c88f6f52389.png)
 #### 2.Display tables
 ![image](https://user-images.githubusercontent.com/60008262/129432549-f61633f2-ee3b-4577-ac92-b6f099cbfe8c.png)
 #### 3. Create new records
