@@ -4,9 +4,9 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 import os
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 encsUser = os.getenv('ENCS_USERNAME')
 encsPass = os.getenv('ENCS_PASSWORD')
